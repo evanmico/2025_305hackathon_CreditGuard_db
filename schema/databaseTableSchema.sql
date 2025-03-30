@@ -1,0 +1,56 @@
+
+
+-- @block 
+CREATE TABLE IF NOT EXISTS bank (
+    ID INT UNSIGNED AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    PRIMARY KEY(ID),
+    INDEX bank_name_idx USING BTREE(name)
+);
+
+-- @block
+CREATE TABLE IF NOT EXISTS card (
+    ID INT UNSIGNED AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    bankID INT UNSIGNED NOT NULL,
+    PRIMARY KEY(ID),
+    FOREIGN KEY(bankID) REFERENCES bank(ID)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    INDEX card_name_idx USING BTREE(name)
+);
+
+-- @block
+CREATE TABLE IF NOT EXISTS benefit (
+    ID INT UNSIGNED AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    PRIMARY KEY(ID),
+    INDEX benefit_name_idx USING BTREE(name)
+)
+
+-- @block
+CREATE TABLE IF NOT EXISTS card_benefit (
+    cardID INT UNSIGNED NOT NULL,
+    benefitID INT UNSIGNED NOT NULL,
+    PRIMARY KEY(cardID,benefitID),
+    FOREIGN KEY(cardID) REFERENCES card(ID)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(benefitID) REFERENCES benefit(ID)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+);
+
+-- @block
+CREATE TABLE IF NOT EXISTS full$benefit (
+    cardID INT UNSIGNED NOT NULL,
+    benefitID INT UNSIGNED NOT NULL,
+    text TEXT NOT NULL,
+    PRIMARY KEY(cardID,benefitID),
+    FOREIGN KEY(cardID) REFERENCES card(ID)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(benefitID) REFERENCES benefit(ID)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+)
