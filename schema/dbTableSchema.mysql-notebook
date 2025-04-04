@@ -1,0 +1,132 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "Script",
+    "content": "\nUSE creditguardb;\n-- @block \nCREATE TABLE IF NOT EXISTS bank (\n    ID INT UNSIGNED AUTO_INCREMENT,\n    name VARCHAR(100) NOT NULL,\n    PRIMARY KEY(ID),\n    INDEX bank_name_idx USING BTREE(name)\n);\n\n-- @block\nCREATE TABLE IF NOT EXISTS card (\n    ID INT UNSIGNED AUTO_INCREMENT,\n    name VARCHAR(100) NOT NULL,\n    bankID INT UNSIGNED NOT NULL,\n    PRIMARY KEY(ID),\n    FOREIGN KEY(bankID) REFERENCES bank(ID)\n        ON UPDATE CASCADE\n        ON DELETE RESTRICT,\n    INDEX card_name_idx USING BTREE(name)\n);\n\n-- @block\nCREATE TABLE IF NOT EXISTS benefit (\n    ID INT UNSIGNED AUTO_INCREMENT,\n    name VARCHAR(100) NOT NULL,\n    PRIMARY KEY(ID),\n    INDEX benefit_name_idx USING BTREE(name)\n);\n\n-- @block\nCREATE TABLE IF NOT EXISTS card_benefit (\n    cardID INT UNSIGNED NOT NULL,\n    benefitID INT UNSIGNED NOT NULL,\n    PRIMARY KEY(cardID,benefitID),\n    FOREIGN KEY(cardID) REFERENCES card(ID)\n        ON UPDATE CASCADE\n        ON DELETE RESTRICT,\n    FOREIGN KEY(benefitID) REFERENCES benefit(ID)\n        ON UPDATE CASCADE\n        ON DELETE RESTRICT,\n);\n\n-- @block\nCREATE TABLE IF NOT EXISTS full$benefit (\n    cardID INT UNSIGNED NOT NULL,\n    benefitID INT UNSIGNED NOT NULL,\n    text TEXT NOT NULL,\n    PRIMARY KEY(cardID,benefitID),\n    FOREIGN KEY(cardID) REFERENCES card(ID)\n        ON UPDATE CASCADE\n        ON DELETE RESTRICT,\n    FOREIGN KEY(benefitID) REFERENCES benefit(ID)\n        ON UPDATE CASCADE\n        ON DELETE RESTRICT,\n);",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": null,
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 56,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 0,
+                            "index": 0,
+                            "content": "MySQL Error (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-db' at line 1",
+                            "language": "ansi"
+                        },
+                        {
+                            "type": 0,
+                            "index": 1,
+                            "content": "MySQL Error (1046): No database selected",
+                            "language": "ansi"
+                        },
+                        {
+                            "type": 0,
+                            "index": 2,
+                            "content": "MySQL Error (1046): No database selected",
+                            "language": "ansi"
+                        },
+                        {
+                            "type": 0,
+                            "index": 3,
+                            "content": "MySQL Error (1046): No database selected",
+                            "language": "ansi"
+                        },
+                        {
+                            "type": 0,
+                            "index": 4,
+                            "content": "MySQL Error (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 12",
+                            "language": "ansi"
+                        },
+                        {
+                            "type": 0,
+                            "index": 5,
+                            "content": "MySQL Error (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 13",
+                            "language": "ansi"
+                        },
+                        {
+                            "type": 0,
+                            "index": -1,
+                            "content": "✕ SQL Script execution completed in 424ms. 6 statements executed, 6 errors occurred.",
+                            "language": "ansi"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": ""
+                    }
+                },
+                "currentHeight": 300,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 18
+                        },
+                        "contentStart": 1,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 18,
+                            "length": 179
+                        },
+                        "contentStart": 30,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 197,
+                            "length": 311
+                        },
+                        "contentStart": 209,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 508,
+                            "length": 185
+                        },
+                        "contentStart": 520,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 693,
+                            "length": 364
+                        },
+                        "contentStart": 705,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1057,
+                            "length": 388
+                        },
+                        "contentStart": 1069,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}

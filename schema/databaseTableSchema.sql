@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS benefit (
     name VARCHAR(100) NOT NULL,
     PRIMARY KEY(ID),
     INDEX benefit_name_idx USING BTREE(name)
-)
+);
 
 -- @block
 CREATE TABLE IF NOT EXISTS card_benefit (
@@ -53,4 +53,4 @@ CREATE TABLE IF NOT EXISTS full$benefit (
     FOREIGN KEY(benefitID) REFERENCES benefit(ID)
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
-)
+);
